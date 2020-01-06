@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class=" container d-flex col-4 mx-auto  bg-white  border rounded  m-5 "> <!-- Min container starter -->
+
+<div class="row p-4" >
+
+
+<h2 class="col-4" >Login:</h2>
+<form method="post" class="col-4 " >{% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+</div>
+</div>
+
+{% endblock %}
+
+

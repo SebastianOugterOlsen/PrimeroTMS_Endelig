@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container   mx-auto  bg-white  border rounded  m-2" style="width:440px;"> <!-- Min container starter -->
+
+<div class="row p-4 mx-auto">
+
+<form class="col-4" method="POST" action="">
+    <form class="col-4" action='.' method="'POST"> {% csrf_token %}
+        <p>Skal ( {{ object.kunde_navn }} ) slettes?</p>
+        <p justify-content-center><input type='submit' value='JA'/> <a><button>NEJ</button></a></p>
+    </form>
+</form>
+
+</div>
+
+</div> <!-- Min container slutter -->
+
+
+{% endblock %}
+

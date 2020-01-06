@@ -1,0 +1,48 @@
+<div class="p-2" style=" background-color:#012a50">
+
+<!-- login /logout starter -->
+{% if user.is_authenticated %}
+                                                                            <!--  Hi {{ user.username }}! -->
+   <p class="mb-4" > <a class="text-white-50" href="{% url 'logout' %}" style='float:right'>Log ud</a> </p>
+{% else %}
+                                                                         <!-- <p style='float:right' >You are not logged in</p> -->
+  <p class="mb-4" > <a class=" text-white-50" href="{% url 'login' %}"  style='float:right'>Log ind</a> </p>
+{% endif %}
+<!-- login /logout slutter -->
+
+</div>
+
+<div class="border-bottom bg-white ">
+    <div class="container" style="font-size:1.5vw"><!-- Min container starter -->
+        <nav class="navbar navbar-expand-lg navbar-light"> <!-- Navbar starter -->
+          <a class="navbar-brand" href="/"><img width="200" height="200"  class='img-fluid' src="https://primero.dk/wp-content/uploads/2019/05/PRIMERO_LOGO_RGB.png" alt="Primero"/> </a>   <!-- TMS til at se fedt ud     TMS = Task Management System-->
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+         <!--      <li class="nav-item active">
+                <a class="nav-link" style="color:#012a50" href="/">Startside <img src="https://image.flaticon.com/icons/svg/1370/1370643.svg" width="20" height="20" >  <span class="sr-only">(current)</span></a>
+              </li>
+        -->
+              <li class="nav-item active">
+                <a class="nav-link" style="color:#012a50" href="/kunder"> Kunder  <img src="https://image.flaticon.com/icons/svg/171/171561.svg" width="25" height="25" > </a>
+              </li>
+
+               <li class="nav-item active">
+                <a class="nav-link" style="color:#012a50" href="/opgaver">Opgaver <img src="https://image.flaticon.com/icons/svg/1370/1370650.svg" width="20" height="20"></a>
+               </li>
+
+            </ul>
+            <!--form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search">
+              <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+            </form-->
+          </div>
+        </nav><!-- Navbar slutter -->
+    </div> <!-- Min container slutter -->
+</div>

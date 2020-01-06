@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="text-center container p-4 p-md-5 rounded bg-white border mt-5"> <!-- Min container starter -->
+
+    {% if user.is_authenticated %}
+    <h1>Hej {{ user.get_username }}</h1>
+    <p style="font-size:1.5vw">Velkommen til Primeros task management system </p>
+
+{% else %}
+    <h1>Velkommen til Primeros task management system </h1>
+    <p style="font-size:1.5vw"> Er du allerede bruger venligst  <a href="{% url 'login' %}" >log ind</a>  her.</p>
+    <p style="font-size:1.5vw"> Hvis du endnu ikke er oprettet, venligst kontakt helpdesk.</p>
+{% endif %}
+
+
+</div> <!-- Min container slutter -->
+
+<div class="text-center bg-warning container p-md-5 rounded border mt-5"> <!-- Min container starter -->
+    <h1>Dette er et skoleprojekt udarbejdet af og i samarbejde med vores praktikant fra Datamatikeruddannelsen. </h1>
+    <h1>Programmet er stadig i udviklingsfasen og er indtil videre kun udviklet som et proof of concept.</h1>
+</div> <!-- Min container slutter -->
+
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center p-2 rounded bg-white border " style="font-size:1.5vw">
+   <a class="" style="color:#012a50" href="/kunder_opret">Opret kunde <img src="https://image.flaticon.com/icons/svg/1179/1179454.svg" width="20" height="20" > </a>
+</div>
+
+
+<div class="container p-4 p-md-5 rounded bg-white border mt-5"> <!-- Min container starter -->
+
+<div class="row">
+
+    <p class="col-1 p-0 my-0 text-center font-weight-bold" >ID</p>
+    <p class="col-3 p-0 my-0 text-center font-weight-bold" >NAVN</p>
+    <p class="col-4 p-0 my-0 text-center font-weight-bold" >INSTALLATION</p>
+    <p class="col-4 p-0 my-0 text-center font-weight-bold" >ADRESSE</p>
+
+</div>
+
+{% for instance in object_list %}
+
+<div class="row py-0">
+    <p class="col-1 border rounded p-2 my-0 text-center" > #{{ instance.kunde_id }} </p>
+    <div class="col-3 border p-2 my-0  btn btn-outline-dark" href="#" data-toggle="popover" data-trigger="hover" data-content=" Kontaktperson:  {{instance.kontaktperson}} Tlf:  {{instance.kontakt_tlf}} Mail:  {{instance.kontakt_mail}} " >{{ instance.kunde_navn }}</div>
+    <div class="col-4 border p-2 my-0  btn btn-outline-dark" href="#" data-toggle="popover" data-trigger="hover" data-content="{{ instance.kunde_installation }}" >{% if instance.kunde_installation %}{{ instance.kunde_installation|truncatechars:"30"}}{% else %}Installation ikke beskrevet{% endif %}</div>
+    <div class="col-4 border p-2 my-0  btn btn-outline-dark" href="#" data-toggle="popover" data-trigger="hover" data-content="{{ instance.kunde_adresse }}">{% if instance.kunde_adresse %}{{ instance.kunde_adresse|truncatechars:"30" }}{% else %} Adresse ikke angivet {% endif %}</div>
+</div>
+
+    <a style="color:#012a50" href="{% url 'rediger_kunde' instance.id %}">Rediger </a> <!-- Rediger -->
+    <a style="color:#012a50" href="{% url 'slet_kunde' instance.id %}">Slet </a> <!-- Slet -->
+
+{% endfor %}
+
+</div> <!-- Min container slutter -->
+
+{% endblock %}

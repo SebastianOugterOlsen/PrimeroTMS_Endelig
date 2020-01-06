@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center rounded bg-white border " style="font-size:1.5vw">
+    <a class="nav-link" style="color:#012a50" href="/opgaver_opret">Opret ny opgave <img
+            src="https://image.flaticon.com/icons/svg/1370/1370639.svg" width="20" height="20"></a>
+</div>
+
+<div class="container  p-md-5 rounded bg-white border mt-5"> <!-- Min container starter -->
+
+    <div class="row">
+
+        <p class="col-2 p-0 my-0 text-center font-weight-bold">KUNDE</p>
+        <p class="col-2 p-0 my-0 text-center font-weight-bold">ANSVARLIG</p>
+        <p class="col-2 p-0 my-0 text-center font-weight-bold">BESKRIVELSE</p>
+        <p class="col-2 p-0 my-0 text-center font-weight-bold">NOTER</p>
+        <p class="col-1 p-0 my-0 text-center font-weight-bold">BRUGT</p>
+        <p class="col-1 p-0 my-0 text-center font-weight-bold">STATUS</p>
+        <p class="col-2 p-0 my-0 text-center font-weight-bold">DEADLINE</p>
+        <!-- p class="col-1 p-0 my-0 text-center font-weight-bold" >PRIORITET</p -->
+        <!-- Listen er sorteret efter prioritet, behøver derfor ikke vise tallet -->
+
+    </div>
+
+    {% for instance in object_list %}
+
+    <div class="row py-0">
+
+        <div class="col-2 border p-2 my-0  btn btn-outline-dark" data-toggle="popover" data-trigger="hover"
+             data-content=" Kontaktperson: John Doe Tlf: 12345678 Mail: abc@mail.com ">{{ instance.kunde_navn }}
+        </div>
+        <p class="col-2 border rounded p-0 my-0 text-center ">{{ instance.ansvarlig }}</p>
+        <div class="col-2 border p-2 my-0  btn btn-outline-dark" href="#" data-toggle="popover" data-trigger="hover"
+             data-content="{{ instance.opgave_beskrivelse }}">{% if instance.opgave_beskrivelse %}{{instance.opgave_beskrivelse|truncatechars:"20"}}{% else %}Beskrivelse mangler{% endif %}
+        </div>
+        <div class="col-2 border p-2 my-0  btn btn-outline-dark" href="#" data-toggle="popover" data-trigger="hover" data-content="{{ instance.noter }}"> {% if instance.noter %} {{ instance.noter|truncatechars:"20" }} {% else %} Ingen noter {% endif %}
+        </div>
+        <p class="col-1 border rounded p-2 my-0 text-center">{{ instance.tid_brugt }} t</p>
+        <p class="col-1 border rounded p-0 my-0 text-center ">{{ instance.status }}</p>
+        <p class="col-2 border rounded p-2 my-0 text-center font-weight-bold">{{ instance.deadline }}</p>
+        <!-- p class="col-1 border rounded p-0 my-0 text-center " >{{ instance.prioritet }}</p -->
+
+    </div>
+
+    <div>
+        <a style="color:#012a50" href="{% url 'opgaver_rediger' instance.id %}">Rediger </a> <!-- Rediger -->
+        <a style="color:#012a50" href="{% url 'opgaver_slet' instance.id %}">Slet </a> <!-- Slet -->
+    </div>
+
+    {% endfor %}
+
+    <h7 class="float-right mt-2">*Sorteret efter prioritet</h7>
+
+</div> <!-- Min container slutter -->
+
+<div class="container mx-auto col-2 p-md-2 mt-5 b-4 row justify-content-center rounded bg-white border "
+     style="font-size:1.5vw">
+    <a style="color:#012a50" href="/opgaver_inaktive"> Afsluttede Opgaver <img
+            src="https://image.flaticon.com/icons/svg/1370/1370650.svg" width="20" height="20"></a>
+</div>
+
+{% endblock %}
