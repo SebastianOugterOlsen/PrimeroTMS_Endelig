@@ -2,12 +2,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
 
-from opgaver.views import home_view, opgaver_detail_view, opgaver_opret_view, opgaver_rediger_view, opgaver_slet_view, kunder_detail_view, kunder_opret_view, kunder_rediger_view, kunder_slet_view, opgaver_inaktive_view
+from opgaver.views import home_view, opgaver_detail_view, opgaver_opret_view, opgaver_rediger_view, opgaver_slet_view, kunder_detail_view, kunder_opret_view, kunder_rediger_view, kunder_slet_view, opgaver_inaktive_view, opgaver_personlig_detail_view
 
 urlpatterns = [
     path('', home_view, name='home'),
     path('home/', home_view),
     path('opgaver/', opgaver_detail_view, name='opgaver_detail'),
+    path('opgaver_personlig/', opgaver_personlig_detail_view, name='opgaver_personlig_detail'),
     path('opgaver_opret/', opgaver_opret_view),
     path('opgaver_rediger/<str:pk>/', opgaver_rediger_view, name="opgaver_rediger"),
     path('opgaver_slet/<str:pk>/', opgaver_slet_view, name="opgaver_slet"),

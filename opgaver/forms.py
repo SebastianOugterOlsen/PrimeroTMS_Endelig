@@ -17,7 +17,8 @@ class OpgaverForm(forms.ModelForm):
             'tid_brugt',
             'status',
             'deadline',
-            'prioritet'
+            'prioritet',
+            'fælles'
             ]
 
 class KunderForm(forms.ModelForm):

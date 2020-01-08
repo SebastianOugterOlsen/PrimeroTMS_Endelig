@@ -2,6 +2,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Opgaver, Kunder
 from .forms import OpgaverForm, KunderForm
+from django.contrib.auth.models import User
+
 
 
 def home_view(request, *args, **kwargs):
@@ -10,9 +12,15 @@ def home_view(request, *args, **kwargs):
 
 
 def opgaver_detail_view(request):
-    queryset = Opgaver.objects.exclude(status='5')  # Liste med alle opgave objecter der er aktive
+     # Liste med alle opgave objecter der er aktive og fælles
+    queryset = Opgaver.objects.exclude(status='5').filter(fælles='True')
     context = {"object_list": queryset}
-    return render(request, "opgaver/opgaver_detail.html", context)
+    return render(request, "opgaver/opgaver_personlig_detail.html", context)
+
+def opgaver_personlig_detail_view(request,):
+    queryset = Opgaver.objects.exclude(status='5').filter(ansvarlig_id=request.user) # Liste med alle aktive personlige opgaver     queryset = Opgaver.objects.exclude(status='5')
+    context = {"object_list": queryset}
+    return render(request, "opgaver/opgaver_personlig_detail.html", context)
 
 def opgaver_opret_view(request):
     obj = Opgaver.objects.get(id=1)
@@ -25,9 +33,8 @@ def opgaver_opret_view(request):
     context = {'form': form}
     return render(request, "opgaver/opgaver_opret.html", context)
 
-
-def opgaver_slet_view(request, id):
-    obj = get_object_or_404(Opgaver, id=1)
+def opgaver_slet_view(request, pk):
+    obj = get_object_or_404(Opgaver, id=pk)
     # POST request
     if request.method == "POST":
         # Godkend sletning
@@ -36,7 +43,6 @@ def opgaver_slet_view(request, id):
     context = {"object": obj}
 
     return render(request, "opgaver/opgaver_slet.html", context)
-
 
 def opgaver_rediger_view(request, pk):
     obj = get_object_or_404(Opgaver, id=pk)
@@ -53,6 +59,12 @@ def opgaver_rediger_view(request, pk):
 
     return render(request,'opgaver/opgaver_rediger.html', context)
 
+def opgaver_inaktive_view(request):
+    queryset = Opgaver.objects.filter(status='5')  # Liste med alle opgave objecter der er inaktive
+    context = {"object_list": queryset}
+    return render(request, "opgaver/opgaver_inaktive.html", context)
+
+
 
 
 def kunder_opret_view(request):
@@ -66,15 +78,13 @@ def kunder_opret_view(request):
     context = {'form': form}
     return render(request, "kunder/kunder_opret.html", context)
 
-
 def kunder_detail_view(request):
-    queryset = Kunder.objects.all()  # Liste med alle opgave objecter
+    queryset = Kunder.objects.all()  # Liste med alle kunde objecter
     context = {"object_list": queryset}
     return render(request, "kunder/kunder_detail.html", context)
 
-
 def kunder_slet_view(request, pk):
-    item = get_object_or_404(Opgaver, id=pk)
+    item = get_object_or_404(Kunder, id=pk)
     # POST request
     if request.method == "POST":
         # Godkend sletning
@@ -84,9 +94,8 @@ def kunder_slet_view(request, pk):
 
     return render(request, "kunder/kunder_slet.html", context)
 
-
 def kunder_rediger_view(request, pk):
-    obj = get_object_or_404(Opgaver, id=pk)
+    obj = get_object_or_404(Kunder, id=pk)
 
     form = KunderForm(instance=obj)
 
@@ -100,15 +109,6 @@ def kunder_rediger_view(request, pk):
 
     return render(request,'kunder/kunder_rediger.html', context)
 
-def opgaver_inaktive_view(request):
-    queryset = Opgaver.objects.filter(status='5')  # Liste med alle opgave objecter der er inaktive
-    context = {"object_list": queryset}
-    return render(request, "opgaver/opgaver_inaktive.html", context)
 
 
-#def opgaver_inaktive_view(request, ansvarlig):
- #   obj = get_object_or_404(Opgaver, id=ansvarlig)
-  #  queryset = Opgaver.objects.filter(kunde_navn='id')  # Liste med alle opgave objecter der er inaktive
-   # context = {"object_list": queryset}
-    #return render(request, "opgaver/opgaver_inaktive.html", context)
 

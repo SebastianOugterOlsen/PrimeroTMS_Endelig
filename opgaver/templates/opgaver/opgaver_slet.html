@@ -6,15 +6,14 @@
 
 <div class="row p-4 mx-auto">
 
+    <p>Skal ( {{ object.kunde_navn }} ) slettes?</p>
 <form class="col-4" method="POST" action="">
     <form class="col-4" action='.' method="'POST"> {% csrf_token %}
-        <p>Skal ( {{ object.kunde_navn }} ) slettes?</p>
-        <p><input type='submit' value='JA'/> <a><button>NEJ</button></a></p>
+       <p> <input type='submit' value='JA'/><a href="/opgaver">Nej</a></p>
     </form>
+
 </form>
-
 </div>
-
 </div> <!-- Min container slutter -->
 
 

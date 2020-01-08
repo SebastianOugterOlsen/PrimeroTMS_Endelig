@@ -7,9 +7,7 @@ from django.contrib.auth.models import User
 
 class Opgaver(models.Model):
     kunde_navn = models.CharField(max_length=30)  # Når man bruger char skal man have en max længde
-    ansvarlig = models.ForeignKey(  # Man kan vælge mellem oprettede medarbejdere
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE, )
+    ansvarlig = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,)  # Man kan vælge mellem oprettede medarbejdere
     opgave_beskrivelse = models.TextField(blank=True, null=True)
     noter = models.TextField(blank=True, null=True)
     tid_brugt = models.FloatField()
@@ -22,9 +20,10 @@ class Opgaver(models.Model):
                                              (2, ("Mellem")),
                                              (3, ("Laveste"))), default=3)
     deadline = models.DateField(default=datetime.now)
+    fælles = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ('prioritet', 'deadline')  # So rterer først efter prioritering og derefter deadline
+        ordering = ('prioritet', 'deadline')  # Sorterer først efter prioritering og derefter deadline
 
     def __str__(self):  # viser objectets navn i stedet for nr. i admin
         return str(self.kunde_navn)
