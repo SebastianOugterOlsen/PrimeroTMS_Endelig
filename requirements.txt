@@ -1,4 +1,3 @@
 django
-gunicorn
-django-heroku
-requests
+psycopg2==2.7.5
+

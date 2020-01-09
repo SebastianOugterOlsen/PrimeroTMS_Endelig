@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
 
 <div class="container  mx-auto  bg-white  border rounded  m-5" style="width:530px;"> <!-- Min container starter -->
 
@@ -16,7 +17,7 @@
 
 </div> <!-- Min container slutter -->
 
-
+{% endif %}
 {% endblock %}
 
 

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
 <div class="row justify-content-center rounded bg-white border " style="font-size:1.5vw">
     <a class="nav-link" style="color:#012a50" href="/opgaver_opret">Opret ny opgave <img
             src="https://image.flaticon.com/icons/svg/1370/1370639.svg" width="20" height="20"></a>
@@ -72,5 +73,5 @@
     <a style="color:#012a50" href="/opgaver_inaktive"> Afsluttede opgaver <img
             src="https://image.flaticon.com/icons/svg/1370/1370650.svg" width="20" height="20"></a>
 </div>
-
+{%endif%}
 {% endblock %}

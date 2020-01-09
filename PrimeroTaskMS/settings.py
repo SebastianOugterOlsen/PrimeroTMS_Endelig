@@ -5,7 +5,6 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -14,10 +13,9 @@ SECRET_KEY = 'z4nj9xpqo9bcs4)0d2%5v@8h9onpdfep1fr@1h0wxi^#$rhblt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'True'
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -29,12 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #egen
+    # egen
 
     'opgaver',  # min egen app
-
-
-
 
 ]
 
@@ -68,16 +63,28 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'PrimeroTaskMS.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+   'default': {
+      'ENGINE': 'django.db.backends.sqlite3',
+     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+#DATABASES = {
+#    'default': {
+#       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'LOCAL_DB_NAME',
+#        'USER': 'LOCAL_DB_USER',
+#        'PASSWORD': 'LOCAL_DB_PASS',
+#        'HOST': '127.0.0.1',
+#        'PORT': '5432',
+#    }
+#}
+
 
 
 # Password validation
@@ -98,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -111,7 +117,6 @@ USE_I18N = True
 USE_L10N = False
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/

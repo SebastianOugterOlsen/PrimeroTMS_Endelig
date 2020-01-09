@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
 
 <div class="row justify-content-center p-2 rounded bg-white border " style="font-size:1.5vw">
    <a class="" style="color:#012a50" href="/kunder_opret">Opret kunde <img src="https://image.flaticon.com/icons/svg/1179/1179454.svg" width="20" height="20" > </a>
@@ -34,4 +35,5 @@
 
 </div> <!-- Min container slutter -->
 
+{% endif %}
 {% endblock %}
